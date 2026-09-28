@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer /- File Sharing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<main class="app-layout">
+    <section class="container">
+        <div class="brand">
+            <div class="brand-icon">↗</div>
+            <div>
+                <h1>Transfer</h1>
+                <p>Fast and secure file sharing</p>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button type="button" class="tab active" data-tab="send" id="sendTab">
+                <span>↑</span>
+                Send
+            </button>
+
+            <button type="button" class="tab" data-tab="receive" id="receiveTab">
+                <span>↓</span>
+                Receive
+            </button>
+        </div>
+
+        <div id="send" class="panel active">
+            <div class="user-info">
+                <p>
+                    <strong>Username</strong>
+                    <span id="sendUsername">Loading...</span>
+                </p>
+
+                <p>
+                    <strong>Your IP</strong>
+                    <span id="sendUserIP">Loading...</span>
+                </p>
+            </div>
+
+            <label for="receiverIP">Friend's IP Address</label>
+
+            <input
+                type="text"
+                id="receiverIP"
+                placeholder="192.168.1.20"
+                autocomplete="off"
+                spellcheck="false"
+            >
+
+            <label for="sendPath">File or folder path</label>
+
+            <input
+                type="text"
+                id="sendPath"
+                placeholder="C:\Users\User\Documents\file.pdf"
+                autocomplete="off"
+                spellcheck="false"
+            >
+
+            <div class="transfer-type">
+                <div class="transfer-type-header">
+                    <div>
+                        <span class="field-title">Transfer type</span>
+                        <span class="field-description">
+                            Choose what you want to send
+                        </span>
+                    </div>
+
+                    <span class="selected-type" id="sendType">File</span>
+                </div>
+
+                <div class="type-options">
+                    <button
+                        type="button"
+                        class="type-option active"
+                        id="fileOption"
+                    >
+                        <span class="type-icon">📄</span>
+
+                        <span class="type-content">
+                            <strong>File</strong>
+                            <small>Send a single file</small>
+                        </span>
+
+                        <span class="type-check">✓</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="type-option"
+                        id="folderOption"
+                    >
+                        <span class="type-icon">📁</span>
+
+                        <span class="type-content">
+                            <strong>Folder</strong>
+                            <small>Send an entire folder</small>
+                        </span>
+
+                        <span class="type-check">✓</span>
+                    </button>
+                </div>
+            </div>
+
+            <button
+                type="button"
+                class="enter-btn"
+                id="sendButton"
+                autocomplete="off"
+            >
+                Start Transfer
+            </button>
+
+            <div
+                class="message"
+                id="sendMessage"
+                role="status"
+                aria-live="polite"
+            ></div>
+        </div>
+
+        <div id="receive" class="panel">
+            <div class="user-info">
+                <p>
+                    <strong>Username</strong>
+                    <span id="receiveUsername">Loading...</span>
+                </p>
+
+                <p>
+                    <strong>Your IP</strong>
+                    <span id="receiveUserIP">Loading...</span>
+                </p>
+            </div>
+
+            <label for="receiveIP">Friend's IP Address</label>
+
+            <input
+                type="text"
+                id="receiveIP"
+                placeholder="192.168.1.20"
+                autocomplete="off"
+                spellcheck="false"
+            >
+
+            <label for="receivePath">Where should the files be saved?</label>
+
+            <input
+                type="text"
+                id="receivePath"
+                placeholder="C:\Users\User\Downloads"
+                autocomplete="off"
+                spellcheck="false"
+            >
+
+            <button
+                type="button"
+                class="enter-btn"
+                id="receiveButton"
+                autocomplete="off"
+            >
+                Connect & Receive
+            </button>
+
+            <div
+                class="message"
+                id="receiveMessage"
+                role="status"
+                aria-live="polite"
+            ></div>
+        </div>
+    </section>
+
+    <aside class="help-panel">
+        <div class="help-header">
+            <div class="help-icon">?</div>
+
+            <div>
+                <span class="eyebrow">QUICK GUIDE</span>
+                <h2 id="helpTitle">How to send</h2>
+            </div>
+        </div>
+
+        <div id="sendInstructions" class="instructions active">
+            <p class="help-description">
+                Send a file or folder directly
+                to a friend over your local network.
+            </p>
+
+            <div class="step">
+                <div class="step-number">01</div>
+
+                <div>
+                    <h3>Get your friend's IP</h3>
+                    <p>
+                        Ask your friend for the IP address
+                        shown on their Transfer screen.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">02</div>
+
+                <div>
+                    <h3>Enter your friend's IP</h3>
+                    <p>
+                        Enter your friend's IP address
+                        in the field above.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">03</div>
+
+                <div>
+                    <h3>Choose what to send</h3>
+                    <p>
+                        Enter the path of the file
+                        or folder you want to send.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">04</div>
+
+                <div>
+                    <h3>Choose File or Folder</h3>
+                    <p>
+                        Select whether you want to
+                        send a file or an entire folder.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tip">
+                <span>✦</span>
+
+                <p>
+                    You and your friend should be connected
+                    to the same local network.
+                </p>
+            </div>
+        </div>
+
+        <div id="receiveInstructions" class="instructions">
+            <p class="help-description">
+                Receive files directly from a friend
+                over your local network.
+            </p>
+
+            <div class="step">
+                <div class="step-number">01</div>
+
+                <div>
+                    <h3>Open Receive</h3>
+                    <p>
+                        Select the Receive tab
+                        to get started.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">02</div>
+
+                <div>
+                    <h3>Get your friend's IP</h3>
+                    <p>
+                        Ask your friend for the IP address
+                        shown on their Transfer screen.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">03</div>
+
+                <div>
+                    <h3>Enter your friend's IP</h3>
+                    <p>
+                        Enter your friend's IP address
+                        in the field above.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">04</div>
+
+                <div>
+                    <h3>Choose where to save</h3>
+                    <p>
+                        Enter the folder where you want
+                        to save the received files.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tip">
+                <span>✦</span>
+
+                <p>
+                    You and your friend should be connected
+                    to the same local network.
+                </p>
+            </div>
+        </div>
+
+        <div class="connection-status">
+            <span class="status-dot"></span>
+
+            <span>Local network ready</span>
+        </div>
+    </aside>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

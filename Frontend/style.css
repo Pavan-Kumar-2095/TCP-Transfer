@@ -1,0 +1,1544 @@
+@import url(
+    'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap'
+);
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+    --bg: #07090f;
+    --bg-secondary: #0c1019;
+
+    --card: rgba(17, 22, 34, .78);
+
+    --border: rgba(255, 255, 255, .08);
+    --border-hover: rgba(255, 255, 255, .16);
+
+    --text: #f5f7fb;
+    --text-secondary: #9ca6b8;
+    --text-muted: #687386;
+
+    --primary: #7c5cff;
+    --primary-light: #9b83ff;
+    --primary-dark: #6042e8;
+
+    --cyan: #22d3ee;
+    --green: #34d399;
+    --red: #fb7185;
+
+    --radius-lg: 22px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+
+    --transition: 180ms cubic-bezier(.4, 0, .2, 1);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: "Inter", sans-serif;
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(124, 92, 255, .14),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(34, 211, 238, .07),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(124, 92, 255, .08),
+            transparent 35%
+        ),
+        var(--bg);
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   BACKGROUND GRID
+========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .3;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, .025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, .025) 1px,
+            transparent 1px
+        );
+
+    background-size: 50px 50px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 85%
+        );
+}
+
+
+/* =========================================================
+   APP LAYOUT
+========================================================= */
+
+.app-layout {
+    width: min(
+        1080px,
+        calc(100% - 40px)
+    );
+
+    margin: 50px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(430px, 620px)
+        minmax(300px, 380px);
+
+    gap: 20px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.container {
+    width: 100%;
+
+    padding: 30px;
+
+    border: 1px solid var(--border);
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(22, 28, 43, .88),
+            rgba(10, 13, 21, .94)
+        );
+
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, .45);
+
+    animation:
+        containerIn .5s ease both;
+}
+
+@keyframes containerIn {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px)
+            scale(.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 25px;
+}
+
+.brand-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8062ff,
+            #6243e8
+        );
+
+    color: white;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 25px rgba(124, 92, 255, .3);
+}
+
+.brand h1 {
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    letter-spacing: -.6px;
+}
+
+.brand p {
+    margin-top: 3px;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   TABS
+========================================================= */
+
+.tabs {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 5px;
+
+    margin-bottom: 26px;
+    padding: 5px;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    background:
+        rgba(255, 255, 255, .035);
+}
+
+.tab {
+    border: 0;
+
+    padding: 11px 15px;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: var(--text-muted);
+
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.tab span {
+    margin-right: 5px;
+}
+
+.tab:hover {
+    color: var(--text);
+}
+
+.tab.active {
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124, 92, 255, .95),
+            rgba(96, 66, 232, .9)
+        );
+
+    box-shadow:
+        0 5px 18px rgba(124, 92, 255, .25);
+}
+
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+.panel {
+    display: none;
+
+    animation:
+        panelIn .25s ease both;
+}
+
+.panel.active {
+    display: block;
+}
+
+@keyframes panelIn {
+    from {
+        opacity: 0;
+        transform: translateY(7px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   USER INFO
+========================================================= */
+
+.user-info {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-bottom: 24px;
+    padding: 15px;
+
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    background:
+        rgba(255, 255, 255, .025);
+}
+
+.user-info::before {
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    top: 12px;
+    right: 12px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 12px rgba(52, 211, 153, .8);
+}
+
+.user-info p {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.user-info strong {
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+    letter-spacing: .7px;
+}
+
+.user-info span {
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   LABELS
+========================================================= */
+
+label {
+    display: block;
+
+    margin: 18px 0 8px;
+
+    color: #c9d0dd;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+input[type="text"] {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 15px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    outline: none;
+
+    background:
+        rgba(255, 255, 255, .035);
+
+    color: var(--text);
+
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+
+    transition: var(--transition);
+}
+
+input[type="text"]::placeholder {
+    color: #596477;
+}
+
+input[type="text"]:hover {
+    border-color: var(--border-hover);
+}
+
+input[type="text"]:focus {
+    border-color:
+        rgba(124, 92, 255, .7);
+
+    background:
+        rgba(124, 92, 255, .045);
+
+    box-shadow:
+        0 0 0 4px rgba(124, 92, 255, .08);
+}
+
+
+/* =========================================================
+   TRANSFER TYPE
+========================================================= */
+
+.transfer-type {
+    margin-top: 20px;
+    padding: 16px;
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, .025);
+}
+
+.transfer-type-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 14px;
+}
+
+.field-title {
+    display: block;
+
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.field-description {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+}
+
+.selected-type {
+    flex-shrink: 0;
+
+    padding: 6px 10px;
+
+    border: 1px solid rgba(124, 92, 255, .25);
+    border-radius: 8px;
+
+    background:
+        rgba(124, 92, 255, .08);
+
+    color: #a993ff;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   TYPE OPTIONS
+========================================================= */
+
+.type-options {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+.type-option {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    min-height: 72px;
+
+    padding: 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 13px;
+
+    background:
+        rgba(255, 255, 255, .025);
+
+    color: var(--text);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.type-option:hover {
+    border-color:
+        rgba(124, 92, 255, .4);
+
+    background:
+        rgba(124, 92, 255, .05);
+
+    transform: translateY(-1px);
+}
+
+.type-option.active {
+    border-color:
+        rgba(124, 92, 255, .7);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124, 92, 255, .14),
+            rgba(96, 66, 232, .07)
+        );
+
+    box-shadow:
+        0 8px 25px rgba(124, 92, 255, .12);
+}
+
+.type-icon {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, .06);
+
+    font-size: 17px;
+}
+
+.type-option.active .type-icon {
+    background:
+        rgba(124, 92, 255, .16);
+}
+
+.type-content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.type-content strong {
+    color: #f5f7fb;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.type-content small {
+    color: var(--text-muted);
+
+    font-size: 9px;
+
+    line-height: 1.4;
+}
+
+.type-check {
+    width: 18px;
+    height: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: auto;
+
+    flex-shrink: 0;
+
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 50%;
+
+    color: transparent;
+
+    font-size: 10px;
+
+    transition: var(--transition);
+}
+
+.type-option.active .type-check {
+    border-color: var(--primary);
+
+    background: var(--primary);
+
+    color: white;
+
+    box-shadow:
+        0 0 12px rgba(124, 92, 255, .4);
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.enter-btn {
+    width: 100%;
+    height: 48px;
+
+    margin-top: 22px;
+
+    border: 0;
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8062ff,
+            #6243e8
+        );
+
+    color: white;
+
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(96, 66, 232, .2);
+
+    transition: var(--transition);
+}
+
+.enter-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 32px rgba(96, 66, 232, .35);
+}
+
+.enter-btn:active {
+    transform: translateY(0);
+}
+
+.enter-btn:disabled {
+    opacity: .6;
+
+    cursor: wait;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message {
+    display: none;
+
+    margin-top: 15px;
+    padding: 12px 14px;
+
+    border-radius: 11px;
+
+    background:
+        rgba(52, 211, 153, .06);
+
+    border: 1px solid rgba(52, 211, 153, .15);
+
+    color: #6ee7b7;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.message.error {
+    background:
+        rgba(251, 113, 133, .06);
+
+    border-color:
+        rgba(251, 113, 133, .18);
+
+    color: #fb7185;
+}
+
+
+/* =========================================================
+   HELP PANEL
+========================================================= */
+
+.help-panel {
+    position: relative;
+
+    padding: 27px;
+
+    border: 1px solid var(--border);
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18, 23, 36, .88),
+            rgba(9, 12, 20, .92)
+        );
+
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, .35);
+
+    overflow: hidden;
+}
+
+.help-panel::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: -90px;
+    right: -60px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(124, 92, 255, .13);
+
+    filter: blur(40px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   HELP HEADER
+========================================================= */
+
+.help-header {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+}
+
+.help-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(124, 92, 255, .25);
+    border-radius: 12px;
+
+    background:
+        rgba(124, 92, 255, .1);
+
+    color: #a993ff;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.eyebrow {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #7668bd;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.help-header h2 {
+    color: white;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   INSTRUCTIONS
+========================================================= */
+
+.instructions {
+    display: none;
+}
+
+.instructions.active {
+    display: block;
+
+    animation:
+        helpIn .3s ease both;
+}
+
+@keyframes helpIn {
+    from {
+        opacity: 0;
+        transform: translateX(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.help-description {
+    margin-bottom: 22px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   STEPS
+========================================================= */
+
+.step {
+    display: grid;
+
+    grid-template-columns: 34px 1fr;
+
+    gap: 12px;
+
+    margin-bottom: 19px;
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background:
+        rgba(255, 255, 255, .035);
+
+    color: #8f7bff;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.step h3 {
+    margin-bottom: 4px;
+
+    color: #e8ebf2;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.step p {
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   TIP
+========================================================= */
+
+.tip {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-top: 7px;
+    padding: 12px;
+
+    border: 1px solid rgba(34, 211, 238, .1);
+    border-radius: 11px;
+
+    background:
+        rgba(34, 211, 238, .035);
+}
+
+.tip span {
+    color: var(--cyan);
+
+    font-size: 13px;
+}
+
+.tip p {
+    color: #8390a4;
+
+    font-size: 10px;
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.connection-status {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 24px;
+    padding-top: 17px;
+
+    border-top:
+        1px solid var(--border);
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 9px rgba(52, 211, 153, .7);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+    .app-layout {
+        grid-template-columns: 1fr;
+
+        max-width: 620px;
+
+        margin: 25px auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .app-layout {
+        width:
+            calc(100% - 20px);
+
+        margin: 10px auto;
+
+        gap: 12px;
+    }
+
+    .container {
+        padding: 20px;
+
+        border-radius: 20px;
+    }
+
+    .help-panel {
+        padding: 20px;
+
+        border-radius: 20px;
+    }
+
+    .user-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .type-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+
+/* =========================================================
+   TRANSFER ANIMATIONS
+========================================================= */
+
+/* Button press */
+
+.enter-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* Loading state */
+
+.enter-btn.loading {
+    position: relative;
+
+    overflow: hidden;
+
+    cursor: wait;
+
+    background:
+        linear-gradient(
+            110deg,
+            #6042e8 20%,
+            #8f78ff 40%,
+            #6042e8 60%
+        );
+
+    background-size: 200% 100%;
+
+    animation:
+        buttonShimmer 1.4s linear infinite;
+}
+
+@keyframes buttonShimmer {
+    from {
+        background-position: 200% 0;
+    }
+
+    to {
+        background-position: -200% 0;
+    }
+}
+
+
+/* Small spinner */
+
+.enter-btn.loading::after {
+    content: "";
+
+    display: inline-block;
+
+    width: 14px;
+    height: 14px;
+
+    margin-left: 9px;
+
+    vertical-align: -2px;
+
+    border: 2px solid rgba(255, 255, 255, .35);
+
+    border-top-color: white;
+
+    border-radius: 50%;
+
+    animation:
+        spin .7s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   TRANSFER ACTIVE MESSAGE
+========================================================= */
+
+.message.show {
+    display: block;
+
+    animation:
+        messageIn .35s ease both;
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   SUCCESS ANIMATION
+========================================================= */
+
+.message.success {
+    border-color:
+        rgba(52, 211, 153, .3);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(52, 211, 153, .10),
+            rgba(52, 211, 153, .035)
+        );
+
+    animation:
+        successPop .45s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+@keyframes successPop {
+    0% {
+        opacity: 0;
+
+        transform:
+            scale(.94)
+            translateY(8px);
+    }
+
+    60% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   ERROR ANIMATION
+========================================================= */
+
+.message.error {
+    display: block;
+
+    animation:
+        errorShake .4s ease both;
+}
+
+@keyframes errorShake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-7px);
+    }
+
+    40% {
+        transform: translateX(7px);
+    }
+
+    60% {
+        transform: translateX(-5px);
+    }
+
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+
+/* =========================================================
+   TRANSFER TYPE PULSE
+========================================================= */
+
+.transfer-type.transferring {
+    border-color:
+        rgba(124, 92, 255, .35);
+
+    animation:
+        transferPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes transferPulse {
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 rgba(124, 92, 255, 0);
+    }
+
+    50% {
+        box-shadow:
+            0 0 25px rgba(124, 92, 255, .10);
+    }
+}
+
+
+/* =========================================================
+   RECEIVE LISTENING ANIMATION
+========================================================= */
+
+.user-info.listening {
+    border-color:
+        rgba(34, 211, 238, .3);
+
+    animation:
+        listeningPulse 1.5s ease-in-out infinite;
+}
+
+.user-info.listening::before {
+    background: var(--cyan);
+
+    box-shadow:
+        0 0 5px var(--cyan),
+        0 0 15px rgba(34, 211, 238, .8);
+
+    animation:
+        statusPulse 1s ease-in-out infinite;
+}
+
+@keyframes listeningPulse {
+    0%,
+    100% {
+        border-color:
+            rgba(34, 211, 238, .15);
+    }
+
+    50% {
+        border-color:
+            rgba(34, 211, 238, .45);
+    }
+}
+
+@keyframes statusPulse {
+    0%,
+    100% {
+        transform: scale(.8);
+        opacity: .6;
+    }
+
+    50% {
+        transform: scale(1.25);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   SUCCESS BUTTON
+========================================================= */
+
+.enter-btn.success {
+    background:
+        linear-gradient(
+            135deg,
+            #34d399,
+            #059669
+        );
+
+    box-shadow:
+        0 10px 30px rgba(52, 211, 153, .25);
+
+    animation:
+        successButton .4s ease both;
+}
+
+@keyframes successButton {
+    0% {
+        transform: scale(.96);
+    }
+
+    60% {
+        transform: scale(1.03);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   DISABLED INPUTS DURING TRANSFER
+========================================================= */
+
+.transfer-running input {
+    opacity: .6;
+}
+
+.transfer-running .type-option {
+    opacity: .5;
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   TRANSFER PROGRESS
+============================================================ */
+
+.transfer-progress {
+    margin-top: 18px;
+    padding: 16px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    animation:
+        progressAppear 0.25s ease;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 10px;
+}
+
+.progress-status {
+    font-size: 13px;
+    color: #b9c2d0;
+}
+
+.progress-percent {
+    font-size: 15px;
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6c63ff,
+            #8b7cff,
+            #a78bfa
+        );
+
+    box-shadow:
+        0 0 14px rgba(124, 108, 255, 0.45);
+
+    transition:
+        width 0.25s ease;
+}
+
+.progress-details {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-top: 10px;
+
+    flex-wrap: wrap;
+}
+
+.progress-details span {
+    font-size: 11px;
+    color: #8f99aa;
+}
+
+.progress-speed {
+    color: #9d91ff !important;
+}
+
+.progress-file {
+    display: flex;
+
+    gap: 7px;
+
+    margin-top: 12px;
+
+    min-width: 0;
+
+    font-size: 11px;
+    color: #7f8999;
+}
+
+.progress-file strong {
+    color: #cbd2dc;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.enter-btn.loading {
+    cursor: wait;
+    opacity: 0.8;
+}
+
+.enter-btn.success {
+    background: #20b26b;
+    color: white;
+}
+
+.enter-btn.error {
+    background: #d9534f;
+    color: white;
+}
+
+.enter-btn.transfer-active {
+    cursor: wait;
+}
+
+@keyframes progressAppear {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
